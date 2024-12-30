@@ -9,15 +9,10 @@ source as (
 renamed as (
 
     select
-        specialofferid,
-        modifieddate,
+        specialofferid as special_offer_id,
+        modifieddate as modified_date,
         rowguid,
-        productid,
-        _sdc_sequence,
-        _sdc_table_version,
-        _sdc_received_at,
-        _sdc_batched_at
-
+        productid as product_id,
     from source
 
 )

@@ -307,5 +307,16 @@ models:
         description: "Date and time the record was last updated."
 
   - name: stg_aw_postgres__specialofferproduct
+    description: "Special Offer Product staging table with cleaned and standardized data."
+    columns:
+      - name: special_offer_id
+        description: "Unique identifier for the special offer - FK to SpecialOffer.SpecialOfferID."
+      - name: product_id
+        description: "Unique identifier for the product associated with the special offer - FK to Product.ProductID."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
 
   - name: stg_aw_postgres__stateprovince  
+    description: "Special Offer Product staging table with cleaned and standardized data."
