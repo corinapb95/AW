@@ -9,26 +9,21 @@ source as (
 renamed as (
 
     select
-        nationalidnumber,
-        sickleavehours,
-        loginid,
-        currentflag,
-        modifieddate,
+        businessentityid as business_entity_id,
         rowguid,
+        loginid as login_id,
+        nationalidnumber as national_id_number,
+        birthdate as birth_date,
+        hiredate as hire_date,
+        modifieddate as modified_date, -- yyyy-mm-dd
+        currentflag as current_flag,
+        salariedflag as salaried_flag,
+        maritalstatus as marital_status,
         gender,
-        hiredate,
-        _sdc_table_version,
-        _sdc_received_at,
-        _sdc_sequence,
-        salariedflag,
-        birthdate,
-        maritalstatus,
-        organizationnode,
-        businessentityid,
-        vacationhours,
-        _sdc_batched_at,
-        jobtitle
-
+        jobtitle as job_title,
+        organizationnode as organization_node,
+        sickleavehours as sick_leave_hours,
+        vacationhours as vacation_hours
     from source
 
 )

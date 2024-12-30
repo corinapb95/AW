@@ -6,6 +6,9 @@ models:
     columns:
       - name: address_id
         description: "Unique identifier for the address"
+        tests:
+          - unique
+          - not_null
       - name: address_line_1
         description: "First line of the address"
       - name: address_line_2
@@ -22,6 +25,7 @@ models:
         description: "Spatial data for geolocation"
       - name: state_province_id
         description: "Unique identifier for the state or province"
+
   - name: countryregion
     description: "Country region staging table with cleaned and standardized data"
     columns:
@@ -31,13 +35,14 @@ models:
         description: "Last modified date of the record, in the format yyyy-mm-dd"
       - name: name
         description: "Name of the country or region"
+
   - name: customer
     description: "Customer staging table with cleaned and standardized data"
     columns: 
       - name: customer_id
         description: "Unique identifier for the customer."
       - name: modified_date
-        description: "Last modified date of the customer record, in the format yyyy-mm-dd."
+        description: "Last modified date of the record, in the format yyyy-mm-dd"
       - name: person_id
         description: "Unique identifier for the person"
       - name: rowguid
@@ -46,3 +51,37 @@ models:
         description: "Unique identifier for the store associated with the customer, if applicable."
       - name: territory_id
         description: "Unique identifier for the sales territory associated with the customer."
+
+  - name: stg_aw_postgres__employee
+    description: "Employee staging table with cleaned and standardized data."
+    columns:
+      - name: birth_date
+        description: "Date of birth."
+      - name: business_entity_id
+        description: "Unique identifier for employee records."
+      - name: current_flag
+        description: "Indicates whether the employee is currently active (1) or inactive (0)."
+      - name: modified_date
+        description: "Last modified date of the record, in the format yyyy-mm-dd"
+      - name: gender
+        description: "Gender (e.g., M for Male, F for Female)."
+      - name: hire_date
+        description: "Date when the employee was hired."
+      - name: job_title
+        description: "Work title."
+      - name: login_id
+        description: "Employee's login identifier."
+      - name: marital_status
+        description: "Marital status of the employee (e.g., S for Single, M for Married)."
+      - name: national_id_number
+        description: "Unique national identification number."
+      - name: organization_node
+        description: "Hierarchical structure node representing where the employee is located."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+      - name: salaried_flag
+        description: "Indicates whether the employee is salaried (1) or paid hourly (0)."
+      - name: sick_leave_hours
+        description: "Total number of available sick leave hours."
+      - name: vacation_hours
+        description: "Total number of available vacation hours."
