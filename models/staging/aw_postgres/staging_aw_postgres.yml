@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: address
-    description: "Cleaned and prepared data from address table"
+    description: "Address staging table with cleaned and standardized data"
     columns:
       - name: address_id
         description: "Unique identifier for the address"
@@ -23,7 +23,7 @@ models:
       - name: state_province_id
         description: "Unique identifier for the state or province"
   - name: countryregion
-    description: "Cleaned and prepared data from country region table"
+    description: "Country region staging table with cleaned and standardized data"
     columns:
       - name: country_region_code
         description: "Unique code representing a country or region."
@@ -31,3 +31,18 @@ models:
         description: "Last modified date of the record, in the format yyyy-mm-dd"
       - name: name
         description: "Name of the country or region"
+  - name: customer
+    description: "Customer staging table with cleaned and standardized data"
+    columns: 
+      - name: customer_id
+        description: "Unique identifier for the customer."
+      - name: modified_date
+        description: "Last modified date of the customer record, in the format yyyy-mm-dd."
+      - name: person_id
+        description: "Unique identifier for the person"
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+      - name: store_id
+        description: "Unique identifier for the store associated with the customer, if applicable."
+      - name: territory_id
+        description: "Unique identifier for the sales territory associated with the customer."

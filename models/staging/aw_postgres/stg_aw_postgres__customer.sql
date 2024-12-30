@@ -9,17 +9,12 @@ source as (
 renamed as (
 
     select
-        personid,
-        modifieddate,
+        personid as person_id,
+        modifieddate as modified_date,
         rowguid,
-        _sdc_table_version,
-        territoryid,
-        _sdc_received_at,
-        _sdc_sequence,
-        storeid,
-        customerid,
-        _sdc_batched_at
-
+        territoryid as territory_id,
+        storeid as store_id,
+        customerid as customer_id,
     from source
 
 )
