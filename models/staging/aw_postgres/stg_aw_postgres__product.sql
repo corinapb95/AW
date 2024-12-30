@@ -15,7 +15,7 @@ renamed as (
         finishedgoodsflag as finished_goods_flag,
         listprice as list_price,
         makeflag as make_flag,
-        modifieddate as modified_date, -- yyyy-mm-dd
+        modifieddate as modified_date,
         name,
         productid as product_id,
         productline as product_line,

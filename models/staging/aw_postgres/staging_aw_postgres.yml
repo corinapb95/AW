@@ -163,3 +163,15 @@ models:
         description: "Product weight."
       - name: weight_unit_measure_code
         description: "Unit of measure for Weight column."
+
+  - name: productproductphoto
+    description: "Product photo staging table with cleaned and standardized data."
+    columns:
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: product_photo_id
+        description: "Product photo ID."
+      - name: product_id
+        description: "Product ID."
+      - name: primary
+        description: "0 = Photo is not the principal image. 1 = Photo is the principal image."
