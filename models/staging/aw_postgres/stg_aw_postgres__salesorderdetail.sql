@@ -9,21 +9,16 @@ source as (
 renamed as (
 
     select
-        orderqty,
-        salesorderid,
-        salesorderdetailid,
-        unitprice,
-        specialofferid,
-        modifieddate,
+        carriertrackingnumber as carrier_tracking_number,
+        modifieddate as modified_date,
+        orderqty as order_qty,
+        productid as product_id,
         rowguid,
-        _sdc_table_version,
-        productid,
-        _sdc_received_at,
-        _sdc_sequence,
-        _sdc_batched_at,
-        carriertrackingnumber,
-        unitpricediscount
-
+        salesorderdetailid as sales_order_detail_id,
+        salesorderid as sales_order_id,
+        specialofferid as special_offer_id,
+        unitprice as unit_price,
+        unitpricediscount as unit_price_discount
     from source
 
 )

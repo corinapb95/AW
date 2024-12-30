@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: address
+  - name: stg_aw_postgres__address
     description: "Address staging table with cleaned and standardized data"
     columns:
       - name: address_id
@@ -26,7 +26,7 @@ models:
       - name: state_province_id
         description: "Unique identifier for the state or province - FK to StateProvince table"
 
-  - name: countryregion
+  - name: stg_aw_postgres__countryregion
     description: "Country region staging table with cleaned and standardized data"
     columns:
       - name: country_region_code
@@ -36,7 +36,7 @@ models:
       - name: name
         description: "Country or region name."
 
-  - name: customer
+  - name: stg_aw_postgres__customer
     description: "Customer staging table with cleaned and standardized data"
     columns: 
       - name: customer_id
@@ -52,7 +52,7 @@ models:
       - name: territory_id
         description: "Unique identifier of the territory in which the customer is located - FK to SalesTerritory.SalesTerritoryID."
 
-  - name: employee
+  - name: stg_aw_postgres__employee
     description: "Employee staging table with cleaned and standardized data."
     columns:
       - name: birth_date
@@ -86,7 +86,7 @@ models:
       - name: vacation_hours
         description: "Total number of available vacation hours."
 
-  - name: person
+  - name: stg_aw_postgres__person
     description: "Person staging table with cleaned and standardized data."
     columns:
       - name: business_entity_id
@@ -112,7 +112,7 @@ models:
       - name: title
         description: "A courtesy title. For example, Mr. or Ms."
 
-  - name: product
+  - name: stg_aw_postgres__product
     description: "Product staging table with cleaned and standardized data."
     columns:
       - name: class
@@ -164,7 +164,7 @@ models:
       - name: weight_unit_measure_code
         description: "Unit of measure for Weight column."
 
-  - name: productproductphoto
+  - name: stg_aw_postgres__productproductphoto
     description: "Product photo staging table with cleaned and standardized data."
     columns:
       - name: modified_date
@@ -175,3 +175,40 @@ models:
         description: "Product ID."
       - name: primary
         description: "0 = Photo is not the principal image. 1 = Photo is the principal image."
+
+  - name: stg_aw_postgres__salesorderdetail
+    description: "Sales order detail staging table with cleaned and standardized data."
+    columns:
+      - name: carrier_tracking_number
+        description: "Shipment tracking number supplied by the shipper."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: order_qty
+        description: "Quantity ordered per product."
+      - name: product_id
+        description: "Product sold to customer. FK to Product.ProductID."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+      - name: sales_order_detail_id
+        description: "Primary Key - One incremental unique number per product sold."
+      - name: sales_order_id
+        description: "Identifier linking this record to the associated sales order."
+      - name: special_offer_id
+        description: "Primary key - FK to SalesOrderHeader.SalesOrderID."
+      - name: unit_price
+        description: "Selling price of a single product."
+      - name: unit_price_discount
+        description: "Discount amount."
+
+  
+  - name: stg_aw_postgres__salesorderheader
+    
+  - name: stg_aw_postgres__salesorderheadersalesreason
+    
+  - name: stg_aw_postgres__salesperson
+    
+  - name: stg_aw_postgres__salesreason
+    
+  - name: stg_aw_postgres__specialofferproduct
+    
+  - name: stg_aw_postgres__stateprovince  
