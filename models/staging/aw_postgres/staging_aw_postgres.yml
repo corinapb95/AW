@@ -4,21 +4,30 @@ models:
   - name: address
     description: "Cleaned and prepared data from address table"
     columns:
-      - name: addressid
+      - name: address_id
         description: "Unique identifier for the address"
-      - name: addressline1
+      - name: address_line_1
         description: "First line of the address"
-      - name: addressline2
+      - name: address_line_2
         description: "Second line of the address, if applicable"
       - name: city
         description: "Name of the city"
-      - name: modifieddate
-        description: "Last modified date of the record"
-      - name: postalcode
+      - name: modified_date
+        description: "Last modified date of the record, in the format yyyy-mm-dd"
+      - name: postal_code
         description: "Postal code of the address"
       - name: rowguid
-        description: "Unique identifier for the row"
-      - name: spatiallocation
+        description: "Row Globally Unique Identifier"
+      - name: spatial_location
         description: "Spatial data for geolocation"
-      - name: stateprovinceid
+      - name: state_province_id
         description: "Unique identifier for the state or province"
+  - name: countryregion
+    description: "Cleaned and prepared data from country region table"
+    columns:
+      - name: country_region_code
+        description: "Unique code representing a country or region."
+      - name: modified_date
+        description: "Last modified date of the record, in the format yyyy-mm-dd"
+      - name: name
+        description: "Name of the country or region"
