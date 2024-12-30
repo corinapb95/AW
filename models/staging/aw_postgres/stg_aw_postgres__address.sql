@@ -12,7 +12,7 @@ renamed as (
         stateprovinceid as state_province_id,
         city,
         addressline2 as address_line_2,
-        date(modifieddate) as modified_date, --converte para yyyy-mm-dd
+        modifieddate as modified_date,
         rowguid,
         postalcode as postal_code,
         spatiallocation as spatial_location,

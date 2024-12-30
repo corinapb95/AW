@@ -10,7 +10,7 @@ renamed as (
 
     select
         countryregioncode as country_region_code,
-        date(modifieddate) as modified_date, --converte para yyyy-mm-dd
+        modifieddate as modified_date,
         name
     from source
 

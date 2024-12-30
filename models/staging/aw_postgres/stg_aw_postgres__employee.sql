@@ -15,7 +15,7 @@ renamed as (
         nationalidnumber as national_id_number,
         birthdate as birth_date,
         hiredate as hire_date,
-        modifieddate as modified_date, -- yyyy-mm-dd
+        modifieddate as modified_date,
         currentflag as current_flag,
         salariedflag as salaried_flag,
         maritalstatus as marital_status,

@@ -10,7 +10,7 @@ renamed as (
 
     select
         personid as person_id,
-        date(modifieddate) as modified_date, --converte para yyyy-mm-dd
+        modifieddate as modified_date,
         rowguid,
         territoryid as territory_id,
         storeid as store_id,

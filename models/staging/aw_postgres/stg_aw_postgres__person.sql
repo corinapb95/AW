@@ -18,7 +18,7 @@ renamed as (
         emailpromotion as email_promotion,
         persontype as person_type,
         namestyle as name_style,
-        modifieddate as modified_date, -- yyyy-mm-dd
+        modifieddate as modified_date,
         rowguid
     from source
 
