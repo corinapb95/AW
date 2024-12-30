@@ -52,7 +52,7 @@ models:
       - name: territory_id
         description: "Unique identifier for the sales territory associated with the customer."
 
-  - name: stg_aw_postgres__employee
+  - name: employee
     description: "Employee staging table with cleaned and standardized data."
     columns:
       - name: birth_date
@@ -85,3 +85,29 @@ models:
         description: "Total number of available sick leave hours."
       - name: vacation_hours
         description: "Total number of available vacation hours."
+
+  - name: person
+    description: "Person staging table with cleaned and standardized data."
+    columns:
+      - name: business_entity_id
+        description: "Unique identifier for the business entity."
+      - name: email_promotion
+        description: "Indicates if the person is eligible for email promotions (e.g., 1 for yes, 0 for no)."
+      - name: first_name
+        description: "First name."
+      - name: last_name
+        description: "Last name."
+      - name: middle_name
+        description: "Middle name, if available."
+      - name: modified_date
+        description: "Last modified date of the record, in the format yyyy-mm-dd"
+      - name: name_style
+        description: "Indicates if the name is formatted in a specific style (e.g., Western style)."
+      - name: person_type
+        description: "Type of person, such as employee, customer, or vendor."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+      - name: suffix
+        description: "Suffix of the person's name, such as Jr., Sr., or III."
+      - name: title
+        description: "Title or salutation, such as Mr., Mrs., or Dr."

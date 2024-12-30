@@ -9,14 +9,9 @@ source as (
 renamed as (
 
     select
-        countryregioncode,
-        modifieddate,
-        name,
-        _sdc_sequence,
-        _sdc_table_version,
-        _sdc_received_at,
-        _sdc_batched_at
-
+        countryregioncode as country_region_code,
+        date(modifieddate) as modified_date, --converte para yyyy-mm-dd
+        name
     from source
 
 )

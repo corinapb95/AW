@@ -9,22 +9,17 @@ source as (
 renamed as (
 
     select
-        lastname,
-        persontype,
-        namestyle,
-        suffix,
-        modifieddate,
-        rowguid,
-        _sdc_table_version,
-        emailpromotion,
-        _sdc_received_at,
-        _sdc_sequence,
+        businessentityid as business_entity_id,
+        first_name,
+        middle_name,
+        last_name,
         title,
-        businessentityid,
-        _sdc_batched_at,
-        firstname,
-        middlename
-
+        suffix,
+        emailpromotion as email_promotion,
+        persontype as person_type,
+        namestyle as name_style,
+        modifieddate as modified_date, -- yyyy-mm-dd
+        rowguid
     from source
 
 )
