@@ -9,19 +9,14 @@ source as (
 renamed as (
 
     select
-        stateprovinceid,
-        countryregioncode,
-        modifieddate,
+        stateprovinceid as state_province_id,
+        countryregioncode as country_region_code,
+        modifieddate as modified_date,
         rowguid,
         name,
-        _sdc_table_version,
-        territoryid,
-        _sdc_received_at,
-        _sdc_sequence,
-        isonlystateprovinceflag,
-        _sdc_batched_at,
-        stateprovincecode
-
+        territoryid as territory_id,
+        isonlystateprovinceflag as is_only_state_province_flag,
+        stateprovincecode as state_province_code
     from source
 
 )

@@ -320,3 +320,20 @@ models:
 
   - name: stg_aw_postgres__stateprovince  
     description: "Special Offer Product staging table with cleaned and standardized data."
+    columns:
+      - name: state_province_id
+        description: "Primary Key for the state or province."
+      - name: country_region_code
+        description: "Code representing the country or region - FK to CountryRegion.CountryRegionCode."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+      - name: name
+        description: "Name of the state or province."
+      - name: territory_id
+        description: "Identifier for the sales territory associated with this state or province - FK to SalesTerritory.SalesTerritoryID."
+      - name: is_only_state_province_flag
+        description: "Indicates whether this is the only state or province in the associated country or region (1 = Yes, 0 = No)."
+      - name: state_province_code
+        description: "Code or abbreviation for the state or province."
