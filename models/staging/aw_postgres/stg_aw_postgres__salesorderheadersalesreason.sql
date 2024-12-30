@@ -9,14 +9,9 @@ source as (
 renamed as (
 
     select
-        salesorderid,
-        modifieddate,
-        salesreasonid,
-        _sdc_sequence,
-        _sdc_table_version,
-        _sdc_received_at,
-        _sdc_batched_at
-
+        salesorderid as sales_order_id,
+        modifieddate as modified_date,
+        salesreasonid as sales_reason_id,
     from source
 
 )

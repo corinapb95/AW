@@ -263,6 +263,14 @@ models:
         description: "Globally unique identifier for the row."
 
   - name: stg_aw_postgres__salesorderheadersalesreason
+    description: "Sales order header sales reason staging table with cleaned and standardized data."
+    columns:
+      - name: sales_order_id
+        description: "Primary key. FK to SalesOrderHeader.SalesOrderID."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: sales_reason_id
+        description: "Primary key. FK to SalesReason.SalesReasonID."
 
   - name: stg_aw_postgres__salesperson
 
