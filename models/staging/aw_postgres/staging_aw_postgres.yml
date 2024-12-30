@@ -5,52 +5,52 @@ models:
     description: "Address staging table with cleaned and standardized data"
     columns:
       - name: address_id
-        description: "Unique identifier for the address"
+        description: "Primary key for Address records."
         tests:
           - unique
           - not_null
       - name: address_line_1
-        description: "First line of the address"
+        description: "First line of the address."
       - name: address_line_2
-        description: "Second line of the address, if applicable"
+        description: "Second line of the address."
       - name: city
-        description: "Name of the city"
+        description: "Name of the city."
       - name: modified_date
-        description: "Last modified date of the record, in the format yyyy-mm-dd"
+        description: "Date and time the record was last updated.."
       - name: postal_code
-        description: "Postal code of the address"
+        description: "Postal code of the address."
       - name: rowguid
-        description: "Row Globally Unique Identifier"
+        description: "Row Globally Unique Identifier."
       - name: spatial_location
-        description: "Spatial data for geolocation"
+        description: "Latitude and longitude of this address."
       - name: state_province_id
-        description: "Unique identifier for the state or province"
+        description: "Unique identifier for the state or province - FK to StateProvince table"
 
   - name: countryregion
     description: "Country region staging table with cleaned and standardized data"
     columns:
       - name: country_region_code
-        description: "Unique code representing a country or region."
+        description: "ISO standard code for countries and regions."
       - name: modified_date
-        description: "Last modified date of the record, in the format yyyy-mm-dd"
+        description: "Date and time the record was last updated."
       - name: name
-        description: "Name of the country or region"
+        description: "Country or region name."
 
   - name: customer
     description: "Customer staging table with cleaned and standardized data"
     columns: 
       - name: customer_id
-        description: "Unique identifier for the customer."
+        description: "Primary key for Customer records."
       - name: modified_date
-        description: "Last modified date of the record, in the format yyyy-mm-dd"
+        description: "Date and time the record was last updated."
       - name: person_id
-        description: "Unique identifier for the person"
+        description: "Unique identifier for the person - FK to Person.BusinessEntityID."
       - name: rowguid
         description: "Globally unique identifier for the row."
       - name: store_id
-        description: "Unique identifier for the store associated with the customer, if applicable."
+        description: "Unique identifier for the store - FK to Store.BusinessEntityID."
       - name: territory_id
-        description: "Unique identifier for the sales territory associated with the customer."
+        description: "Unique identifier of the territory in which the customer is located - FK to SalesTerritory.SalesTerritoryID."
 
   - name: employee
     description: "Employee staging table with cleaned and standardized data."
@@ -58,21 +58,21 @@ models:
       - name: birth_date
         description: "Date of birth."
       - name: business_entity_id
-        description: "Unique identifier for employee records."
+        description: "Primary key for employee records - FK to BusinessEntity.BusinessEntityID."
       - name: current_flag
         description: "Indicates whether the employee is currently active (1) or inactive (0)."
       - name: modified_date
-        description: "Last modified date of the record, in the format yyyy-mm-dd"
+        description: "Date and time the record was last updated."
       - name: gender
-        description: "Gender (e.g., M for Male, F for Female)."
+        description: "Gender - M = Male, F = Female."
       - name: hire_date
         description: "Date when the employee was hired."
       - name: job_title
         description: "Work title."
       - name: login_id
-        description: "Employee's login identifier."
+        description: "Employee's network login."
       - name: marital_status
-        description: "Marital status of the employee (e.g., S for Single, M for Married)."
+        description: "Marital status - S = Single, M = Married."
       - name: national_id_number
         description: "Unique national identification number."
       - name: organization_node
@@ -90,24 +90,76 @@ models:
     description: "Person staging table with cleaned and standardized data."
     columns:
       - name: business_entity_id
-        description: "Unique identifier for the business entity."
+        description: "Primary key for Person records."
       - name: email_promotion
-        description: "Indicates if the person is eligible for email promotions (e.g., 1 for yes, 0 for no)."
+        description: "0 = Contact does not wish to receive e-mail promotions, 1 = Contact does wish to receive e-mail promotions from AdventureWorks, 2 = Contact does wish to receive e-mail promotions from AdventureWorks and selected partners."
       - name: first_name
         description: "First name."
       - name: last_name
         description: "Last name."
       - name: middle_name
-        description: "Middle name, if available."
+        description: "Middle name or middle initial."
       - name: modified_date
-        description: "Last modified date of the record, in the format yyyy-mm-dd"
+        description: "Date and time the record was last updated."
       - name: name_style
-        description: "Indicates if the name is formatted in a specific style (e.g., Western style)."
+        description: "0 = The data in FirstName and LastName are stored in western style (first name, last name) order. 1 = Eastern style (last name, first name) order."
       - name: person_type
-        description: "Type of person, such as employee, customer, or vendor."
+        description: "Type of person, SC = Store Contact, IN = Individual (retail) customer, SP = Sales person, EM = Employee (non-sales), VC = Vendor contact, GC = General contact."
       - name: rowguid
         description: "Globally unique identifier for the row."
       - name: suffix
-        description: "Suffix of the person's name, such as Jr., Sr., or III."
+        description: "Surname suffix, such as Jr., Sr., or III."
       - name: title
-        description: "Title or salutation, such as Mr., Mrs., or Dr."
+        description: "A courtesy title. For example, Mr. or Ms."
+
+  - name: product
+    description: "Product staging table with cleaned and standardized data."
+    columns:
+      - name: class
+        description: "Class of the product - H = High, M = Medium, L = Low."
+      - name: color
+        description: "Product color."
+      - name: days_to_manufacture
+        description: "Number of days required to manufacture the product."
+      - name: finished_goods_flag
+        description: "Indicates if the product is a salable item (1) or not salable (0)."
+      - name: list_price
+        description: "Selling price."
+      - name: make_flag
+        description: "Indicates if the product is purchased (0) or manufactured in-house (1)."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: name
+        description: "Name of the product."
+      - name: product_id
+        description: "Unique identifier for the product."
+      - name: product_line
+        description: "Product line - R = Road, M = Mountain, T = Touring, S = Standard."
+      - name: product_model_id
+        description: "Identifier for the model."
+      - name: product_number
+        description: "Unique product identification number."
+      - name: product_subcategory_id
+        description: "Identifier for the subcategory."
+      - name: reorder_point
+        description: "Inventory level that triggers a purchase order or work order."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+      - name: safety_stock_level
+        description: "Minimum inventory quantity."
+      - name: sell_end_date
+        description: "Date when the product is no longer available for sale."
+      - name: sell_start_date
+        description: "Date when the product became available for sale."
+      - name: size
+        description: "Product size."
+      - name: size_unit_measure_code
+        description: "Unit of measure for Size column."
+      - name: standard_cost
+        description: "Standard cost of the product."
+      - name: style
+        description: "Style of the product - W = Womens, M = mens, U = Universal."
+      - name: weight
+        description: "Product weight."
+      - name: weight_unit_measure_code
+        description: "Unit of measure for Weight column."
