@@ -9,20 +9,15 @@ source as (
 renamed as (
 
     select
-        salesquota,
-        modifieddate,
+        salesquota as sales_quota,
+        modifieddate as modified_date,
         rowguid,
-        saleslastyear,
-        commissionpct,
-        _sdc_table_version,
-        territoryid,
+        saleslastyear as sales_last_year,
+        commissionpct as comission_pct,
+        territoryid as territory_id,
         bonus,
-        _sdc_received_at,
-        _sdc_sequence,
-        businessentityid,
-        _sdc_batched_at,
-        salesytd
-
+        businessentityid as business_entity_id,
+        salesytd as sales_ytd
     from source
 
 )
