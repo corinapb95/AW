@@ -9,15 +9,10 @@ source as (
 renamed as (
 
     select
-        reasontype,
-        modifieddate,
+        reasontype as reason_type,
+        modifieddate as modified_date,
         name,
-        salesreasonid,
-        _sdc_sequence,
-        _sdc_table_version,
-        _sdc_received_at,
-        _sdc_batched_at
-
+        salesreasonid as sales_reason_id,
     from source
 
 )

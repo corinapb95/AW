@@ -272,27 +272,27 @@ models:
       - name: sales_reason_id
         description: "Primary key. FK to SalesReason.SalesReasonID."
 
-  # - name: stg_aw_postgres__salesperson
-  #   description: "Sales person staging table with cleaned and standardized data."
-  #   columns:
-  #     - name: business_entity_id
-  #       description: "Unique identifier for the business entity - FK to BusinessEntity.BusinessEntityID."
-  #     - name: territory_id
-  #       description: "Identifier for the sales territory associated with this record - FK to SalesTerritory.SalesTerritoryID."
-  #     - name: sales_quota
-  #       description: "Target sales quota assigned to the salesperson."
-  #     - name: sales_ytd
-  #       description: "Total sales year-to-date for the salesperson."
-  #     - name: sales_last_year
-  #       description: "Total sales for the salesperson in the previous year."
-  #     - name: commission_pct
-  #       description: "Commission percentage earned by the salesperson for each sale."
-  #     - name: bonus
-  #       description: "Bonus earned by the salesperson."
-  #     - name: modified_date
-  #       description: "Date and time the record was last updated."
-  #     - name: rowguid
-  #       description: "Globally unique identifier for the row."
+  - name: stg_aw_postgres__salesperson
+    description: "Sales person staging table with cleaned and standardized data."
+    columns:
+      - name: business_entity_id
+        description: "Unique identifier for the business entity - FK to BusinessEntity.BusinessEntityID."
+      - name: territory_id
+        description: "Identifier for the sales territory associated with this record - FK to SalesTerritory.SalesTerritoryID."
+      - name: sales_quota
+        description: "Target sales quota assigned to the salesperson."
+      - name: sales_ytd
+        description: "Total sales year-to-date for the salesperson."
+      - name: sales_last_year
+        description: "Total sales for the salesperson in the previous year."
+      - name: commission_pct
+        description: "Commission percentage earned by the salesperson for each sale."
+      - name: bonus
+        description: "Bonus earned by the salesperson."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
 
   - name: stg_aw_postgres__salesreason
     description: "Sales reason staging table with cleaned and standardized data."
@@ -305,7 +305,6 @@ models:
         description: "Category or type of the sales reason (e.g., Marketing, Sales, etc.)."
       - name: modified_date
         description: "Date and time the record was last updated."
-
 
   - name: stg_aw_postgres__specialofferproduct
 
