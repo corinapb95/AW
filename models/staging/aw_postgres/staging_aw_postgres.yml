@@ -4,5 +4,21 @@ models:
   - name: address
     description: "Cleaned and prepared data from address table"
     columns:
+      - name: addressid
+        description: "Unique identifier for the address"
+      - name: addressline1
+        description: "First line of the address"
+      - name: addressline2
+        description: "Second line of the address, if applicable"
+      - name: city
+        description: "Name of the city"
+      - name: modifieddate
+        description: "Last modified date of the record"
+      - name: postalcode
+        description: "Postal code of the address"
+      - name: rowguid
+        description: "Unique identifier for the row"
+      - name: spatiallocation
+        description: "Spatial data for geolocation"
       - name: stateprovinceid
-        description: "Unique identifier..."
+        description: "Unique identifier for the state or province"

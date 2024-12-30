@@ -9,20 +9,15 @@ source as (
 renamed as (
 
     select
-        stateprovinceid,
+        stateprovinceid as state_province_id,
         city,
-        addressline2,
-        modifieddate,
+        addressline2 as address_line_2,
+        date(modifieddate) as modified_date, --converte para yyyy-mm-dd
         rowguid,
-        _sdc_table_version,
-        postalcode,
-        spatiallocation,
-        _sdc_received_at,
-        _sdc_sequence,
-        addressline1,
-        _sdc_batched_at,
-        addressid
-
+        postalcode as postal_code,
+        spatiallocation as spatial_location,
+        addressline1 as address_line_1,
+        addressid as address_id
     from source
 
 )
