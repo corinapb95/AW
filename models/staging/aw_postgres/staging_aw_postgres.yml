@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: address
+    description: "Cleaned and prepared data from address table"
+    columns:
+      - name: stateprovinceid
+        description: "Unique identifier..."
