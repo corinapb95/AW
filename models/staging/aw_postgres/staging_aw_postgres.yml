@@ -15,200 +15,259 @@ models:
         description: "Second line of the address."
       - name: city
         description: "Name of the city."
-      - name: modified_date
-        description: "Date and time the record was last updated.."
+      - name: state_province_id
+        description: "Unique identifier for the state or province - FK to StateProvince table."
       - name: postal_code
         description: "Postal code of the address."
-      - name: rowguid
-        description: "Row Globally Unique Identifier."
       - name: spatial_location
         description: "Latitude and longitude of this address."
-      - name: state_province_id
-        description: "Unique identifier for the state or province - FK to StateProvince table"
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: rowguid
+        description: "Row Globally Unique Identifier."
+
 
   - name: stg_aw_postgres__countryregion
     description: "Country region staging table with cleaned and standardized data"
     columns:
       - name: country_region_code
         description: "ISO standard code for countries and regions."
-      - name: modified_date
-        description: "Date and time the record was last updated."
       - name: name
         description: "Country or region name."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+
 
   - name: stg_aw_postgres__customer
     description: "Customer staging table with cleaned and standardized data"
     columns: 
       - name: customer_id
         description: "Primary key for Customer records."
-      - name: modified_date
-        description: "Date and time the record was last updated."
       - name: person_id
         description: "Unique identifier for the person - FK to Person.BusinessEntityID."
-      - name: rowguid
-        description: "Globally unique identifier for the row."
       - name: store_id
         description: "Unique identifier for the store - FK to Store.BusinessEntityID."
       - name: territory_id
         description: "Unique identifier of the territory in which the customer is located - FK to SalesTerritory.SalesTerritoryID."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+
 
   - name: stg_aw_postgres__employee
     description: "Employee staging table with cleaned and standardized data."
     columns:
-      - name: birth_date
-        description: "Date of birth."
       - name: business_entity_id
         description: "Primary key for employee records - FK to BusinessEntity.BusinessEntityID."
-      - name: current_flag
-        description: "Indicates whether the employee is currently active (1) or inactive (0)."
-      - name: modified_date
-        description: "Date and time the record was last updated."
-      - name: gender
-        description: "Gender - M = Male, F = Female."
+      - name: national_id_number
+        description: "Unique national identification number."
+      - name: first_name
+        description: "First name."
+      - name: last_name
+        description: "Last name."
+      - name: birth_date
+        description: "Date of birth."
       - name: hire_date
         description: "Date when the employee was hired."
       - name: job_title
         description: "Work title."
-      - name: login_id
-        description: "Employee's network login."
-      - name: marital_status
-        description: "Marital status - S = Single, M = Married."
-      - name: national_id_number
-        description: "Unique national identification number."
-      - name: organization_node
-        description: "Hierarchical structure node representing where the employee is located."
-      - name: rowguid
-        description: "Globally unique identifier for the row."
       - name: salaried_flag
         description: "Indicates whether the employee is salaried (1) or paid hourly (0)."
       - name: sick_leave_hours
         description: "Total number of available sick leave hours."
       - name: vacation_hours
         description: "Total number of available vacation hours."
+      - name: gender
+        description: "Gender - M = Male, F = Female."
+      - name: marital_status
+        description: "Marital status - S = Single, M = Married."
+      - name: login_id
+        description: "Employee's network login."
+      - name: organization_node
+        description: "Hierarchical structure node representing where the employee is located."
+      - name: current_flag
+        description: "Indicates whether the employee is currently active (1) or inactive (0)."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+
 
   - name: stg_aw_postgres__person
     description: "Person staging table with cleaned and standardized data."
     columns:
       - name: business_entity_id
         description: "Primary key for Person records."
-      - name: email_promotion
-        description: "0 = Contact does not wish to receive e-mail promotions, 1 = Contact does wish to receive e-mail promotions from AdventureWorks, 2 = Contact does wish to receive e-mail promotions from AdventureWorks and selected partners."
       - name: first_name
         description: "First name."
-      - name: last_name
-        description: "Last name."
       - name: middle_name
         description: "Middle name or middle initial."
-      - name: modified_date
-        description: "Date and time the record was last updated."
-      - name: name_style
-        description: "0 = The data in FirstName and LastName are stored in western style (first name, last name) order. 1 = Eastern style (last name, first name) order."
+      - name: last_name
+        description: "Last name."
       - name: person_type
         description: "Type of person, SC = Store Contact, IN = Individual (retail) customer, SP = Sales person, EM = Employee (non-sales), VC = Vendor contact, GC = General contact."
-      - name: rowguid
-        description: "Globally unique identifier for the row."
-      - name: suffix
-        description: "Surname suffix, such as Jr., Sr., or III."
+      - name: email_promotion
+        description: "0 = Contact does not wish to receive e-mail promotions, 1 = Contact does wish to receive e-mail promotions from AdventureWorks, 2 = Contact does wish to receive e-mail promotions from AdventureWorks and selected partners."
       - name: title
         description: "A courtesy title. For example, Mr. or Ms."
+      - name: suffix
+        description: "Surname suffix, such as Jr., Sr., or III."
+      - name: name_style
+        description: "0 = The data in FirstName and LastName are stored in western style (first name, last name) order. 1 = Eastern style (last name, first name) order."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+
 
   - name: stg_aw_postgres__product
     description: "Product staging table with cleaned and standardized data."
     columns:
-      - name: class
-        description: "Class of the product - H = High, M = Medium, L = Low."
-      - name: color
-        description: "Product color."
-      - name: days_to_manufacture
-        description: "Number of days required to manufacture the product."
-      - name: finished_goods_flag
-        description: "Indicates if the product is a salable item (1) or not salable (0)."
-      - name: list_price
-        description: "Selling price."
-      - name: make_flag
-        description: "Indicates if the product is purchased (0) or manufactured in-house (1)."
-      - name: modified_date
-        description: "Date and time the record was last updated."
-      - name: name
-        description: "Name of the product."
       - name: product_id
         description: "Unique identifier for the product."
-      - name: product_line
-        description: "Product line - R = Road, M = Mountain, T = Touring, S = Standard."
-      - name: product_model_id
-        description: "Identifier for the model."
       - name: product_number
         description: "Unique product identification number."
+      - name: name
+        description: "Name of the product."
+      - name: product_model_id
+        description: "Identifier for the model."
+      - name: product_line
+        description: "Product line - R = Road, M = Mountain, T = Touring, S = Standard."
       - name: product_subcategory_id
         description: "Identifier for the subcategory."
-      - name: reorder_point
-        description: "Inventory level that triggers a purchase order or work order."
-      - name: rowguid
-        description: "Globally unique identifier for the row."
-      - name: safety_stock_level
-        description: "Minimum inventory quantity."
-      - name: sell_end_date
-        description: "Date when the product is no longer available for sale."
-      - name: sell_start_date
-        description: "Date when the product became available for sale."
+      - name: class
+        description: "Class of the product - H = High, M = Medium, L = Low."
+      - name: style
+        description: "Style of the product - W = Womens, M = Mens, U = Universal."
       - name: size
         description: "Product size."
       - name: size_unit_measure_code
         description: "Unit of measure for Size column."
-      - name: standard_cost
-        description: "Standard cost of the product."
-      - name: style
-        description: "Style of the product - W = Womens, M = mens, U = Universal."
+      - name: color
+        description: "Product color."
       - name: weight
         description: "Product weight."
       - name: weight_unit_measure_code
         description: "Unit of measure for Weight column."
+      - name: finished_goods_flag
+        description: "Indicates if the product is a salable item (1) or not salable (0)."
+      - name: make_flag
+        description: "Indicates if the product is purchased (0) or manufactured in-house (1)."
+      - name: days_to_manufacture
+        description: "Number of days required to manufacture the product."
+      - name: safety_stock_level
+        description: "Minimum inventory quantity."
+      - name: reorder_point
+        description: "Inventory level that triggers a purchase order or work order."
+      - name: sell_start_date
+        description: "Date when the product became available for sale."
+      - name: sell_end_date
+        description: "Date when the product is no longer available for sale."
+      - name: list_price
+        description: "Selling price."
+      - name: standard_cost
+        description: "Standard cost of the product."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+
 
   - name: stg_aw_postgres__productproductphoto
     description: "Product photo staging table with cleaned and standardized data."
     columns:
-      - name: modified_date
-        description: "Date and time the record was last updated."
       - name: product_photo_id
         description: "Product photo ID."
       - name: product_id
         description: "Product ID."
       - name: primary
         description: "0 = Photo is not the principal image. 1 = Photo is the principal image."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+
 
   - name: stg_aw_postgres__salesorderdetail
     description: "Sales order detail staging table with cleaned and standardized data."
     columns:
-      - name: carrier_tracking_number
-        description: "Shipment tracking number supplied by the shipper."
-      - name: modified_date
-        description: "Date and time the record was last updated."
-      - name: order_qty
-        description: "Quantity ordered per product."
-      - name: product_id
-        description: "Product sold to customer. FK to Product.ProductID."
-      - name: rowguid
-        description: "Globally unique identifier for the row."
       - name: sales_order_detail_id
         description: "Primary Key - One incremental unique number per product sold."
       - name: sales_order_id
         description: "Identifier linking this record to the associated sales order."
+      - name: product_id
+        description: "Product sold to customer. FK to Product.ProductID."
       - name: special_offer_id
         description: "Primary key - FK to SalesOrderHeader.SalesOrderID."
+      - name: order_qty
+        description: "Quantity ordered per product."
       - name: unit_price
         description: "Selling price of a single product."
       - name: unit_price_discount
-        description: "Discount amount."
+        description: "Discount amount applied to the unit price of the product."
+      - name: carrier_tracking_number
+        description: "Shipment tracking number supplied by the shipper."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
 
-  
+
   - name: stg_aw_postgres__salesorderheader
-    
+    description: "Sales order header staging table with cleaned and standardized data."
+    columns:
+      - name: sales_order_id
+        description: "Primary key for the sales order."
+      - name: customer_id
+        description: "Customer ID. FK to Customer.BusinessEntityID."
+      - name: sales_person_id
+        description: "Sales person who created the sales order. FK to SalesPerson.BusinessEntityID."
+      - name: bill_to_address_id
+        description: "Customer billing address. FK to Address.AddressID."
+      - name: ship_address_id
+        description: "Customer shipping address. FK to Address.AddressID."
+      - name: order_date
+        description: "Dates the sales order was created."
+      - name: due_date
+        description: "Date the order is due to the customer."
+      - name: ship_date
+        description: "Date the order was shipped to the customer."
+      - name: subtotal
+        description: "Sales subtotal. Computed as SUM(SalesOrderDetail.LineTotal) for the appropriate SalesOrderID."
+      - name: tax_amt
+        description: "Tax amount."
+      - name: freight
+        description: "Shipping cost."
+      - name: total_due
+        description: "Total due from customer. Computed as Subtotal + TaxAmt + Freight."
+      - name: status
+        description: "Order current status. 1 = In process; 2 = Approved; 3 = Backordered; 4 = Rejected; 5 = Shipped; 6 = Cancelled."
+      - name: currency_rate_id
+        description: "Currency exchange rate used. FK to CurrencyRate.CurrencyRateID."
+      - name: credit_card_id
+        description: "Credit card ID. FK to CreditCard.CreditCardID."
+      - name: credit_card_approval_code
+        description: "Approval code provided by the credit card company."
+      - name: purchase_order_number
+        description: "Customer purchase order number reference."
+      - name: account_number
+        description: "Financial accounting number reference."
+      - name: online_order_flag
+        description: "Indicates whether the order was placed by sales person (1) or online by customer (0)."
+      - name: revision_number
+        description: "Incremental number to track changes to the sales order over time."
+      - name: territory_id
+        description: "Territory in which the sale was made. FK to SalesTerritory.SalesTerritoryID."
+      - name: modified_date
+        description: "Date and time the record was last updated."
+      - name: rowguid
+        description: "Globally unique identifier for the row."
+
   - name: stg_aw_postgres__salesorderheadersalesreason
-    
+
   - name: stg_aw_postgres__salesperson
-    
+
   - name: stg_aw_postgres__salesreason
-    
+
   - name: stg_aw_postgres__specialofferproduct
-    
+
   - name: stg_aw_postgres__stateprovince  
