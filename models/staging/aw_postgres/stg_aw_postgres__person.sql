@@ -10,9 +10,9 @@ renamed as (
 
     select
         businessentityid as business_entity_id,
-        first_name,
-        middle_name,
-        last_name,
+        firstname as first_name,
+        middlename as middle_name,
+        lastname as last_name,
         title,
         suffix,
         emailpromotion as email_promotion,
