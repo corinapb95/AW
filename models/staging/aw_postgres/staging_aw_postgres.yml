@@ -43,6 +43,9 @@ models:
     columns: 
       - name: customer_id
         description: "Primary key for Customer records."
+        tests:
+          - unique
+          - not_null
       - name: person_id
         description: "Unique identifier for the person - FK to Person.BusinessEntityID."
       - name: store_id
@@ -60,6 +63,9 @@ models:
     columns:
       - name: business_entity_id
         description: "Primary key for employee records - FK to BusinessEntity.BusinessEntityID."
+        tests:
+          - unique
+          - not_null
       - name: national_id_number
         description: "Unique national identification number."
       - name: first_name
@@ -99,6 +105,9 @@ models:
     columns:
       - name: business_entity_id
         description: "Primary key for Person records."
+        tests:
+          - unique
+          - not_null
       - name: first_name
         description: "First name."
       - name: middle_name
@@ -126,6 +135,9 @@ models:
     columns:
       - name: product_id
         description: "Unique identifier for the product."
+        tests:
+          - unique
+          - not_null
       - name: product_number
         description: "Unique product identification number."
       - name: name
@@ -179,6 +191,9 @@ models:
     columns:
       - name: product_photo_id
         description: "Product photo ID."
+        tests:
+          - unique
+          - not_null
       - name: product_id
         description: "Product ID."
       - name: primary
@@ -192,6 +207,9 @@ models:
     columns:
       - name: sales_order_detail_id
         description: "Primary Key - One incremental unique number per product sold."
+        tests:
+          - unique
+          - not_null
       - name: sales_order_id
         description: "Identifier linking this record to the associated sales order."
       - name: product_id
@@ -217,6 +235,9 @@ models:
     columns:
       - name: sales_order_id
         description: "Primary key for the sales order."
+        tests:
+          - unique
+          - not_null
       - name: customer_id
         description: "Customer ID. FK to Customer.BusinessEntityID."
       - name: sales_person_id
@@ -267,6 +288,9 @@ models:
     columns:
       - name: sales_order_id
         description: "Primary key. FK to SalesOrderHeader.SalesOrderID."
+        tests:
+          - unique
+          - not_null
       - name: modified_date
         description: "Date and time the record was last updated."
       - name: sales_reason_id
@@ -299,6 +323,9 @@ models:
     columns:
       - name: sales_reason_id
         description: "Unique identifier for the sales reason."
+        tests:
+          - unique
+          - not_null
       - name: name
         description: "Name or description of the sales reason."
       - name: reason_type
@@ -311,6 +338,9 @@ models:
     columns:
       - name: special_offer_id
         description: "Unique identifier for the special offer - FK to SpecialOffer.SpecialOfferID."
+        tests:
+          - unique
+          - not_null
       - name: product_id
         description: "Unique identifier for the product associated with the special offer - FK to Product.ProductID."
       - name: modified_date
@@ -323,6 +353,9 @@ models:
     columns:
       - name: state_province_id
         description: "Primary Key for the state or province."
+        tests:
+          - unique
+          - not_null
       - name: country_region_code
         description: "Code representing the country or region - FK to CountryRegion.CountryRegionCode."
       - name: modified_date
