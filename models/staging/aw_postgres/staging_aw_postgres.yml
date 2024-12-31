@@ -336,4 +336,4 @@ models:
       - name: is_only_state_province_flag
         description: "Indicates whether this is the only state or province in the associated country or region (1 = Yes, 0 = No)."
       - name: state_province_code
-        description: "Code or abbreviation for the state or province."
+        description: "Code for the state or province."
