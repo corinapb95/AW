@@ -13,7 +13,6 @@
 --     from {{ ref('productcategory') }}
 -- )
 
-
 -- select
 --       {{ dbt_utils.generate_surrogate_key(['stg_product.productid']) }} as product_key, 
 --         stg_product.productid,
