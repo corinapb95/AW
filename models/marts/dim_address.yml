@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_address
+    description: "Tabela dimensional para armazenar informações de endereços."
+    columns:
+      - name: address_key
+        description: "Chave substituta exclusiva para cada endereço."
+      - name: address_id
+        description: "ID do endereço original no sistema transacional."
+      - name: address_line1
+        description: "Primeira linha do endereço."
+      - name: address_line2
+        description: "Segunda linha do endereço (opcional)."
+      - name: city
+        description: "Cidade do endereço."
+      - name: state_province_name
+        description: "Nome do estado ou província."
+      - name: country_region_name
+        description: "Nome do país ou região."
+      - name: postal_code
+        description: "Código postal do endereço."

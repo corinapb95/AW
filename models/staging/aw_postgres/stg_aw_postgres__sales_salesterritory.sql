@@ -12,13 +12,13 @@ renamed as (
         territoryid as territory_id,
         name as territory_name,
         countryregioncode as country_region_code,
-        group,
+        `group` AS continent,
         salesytd as sales_ytd,
         saleslastyear as sales_last_year,
         costytd as cost_ytd,
         costlastyear as cost_last_year,
         rowguid,
-        modifieddate as modified_date,
+        modifieddate as modified_date
     from source
 
 )
