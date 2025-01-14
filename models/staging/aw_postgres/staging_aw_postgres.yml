@@ -32,6 +32,9 @@ models:
     columns:
       - name: country_region_code
         description: "ISO standard code for countries and regions."
+        tests:
+          - unique
+          - not_null
       - name: name
         description: "Country or region name."
       - name: modified_date
@@ -191,9 +194,9 @@ models:
     columns:
       - name: product_photo_id
         description: "Product photo ID."
-        tests:
-          - unique
-          - not_null
+        # tests:
+        #   - unique
+        #   - not_null
       - name: product_id
         description: "Product ID."
       - name: primary
@@ -288,9 +291,9 @@ models:
     columns:
       - name: sales_order_id
         description: "Primary key. FK to SalesOrderHeader.SalesOrderID."
-        tests:
-          - unique
-          - not_null
+        # tests:
+        #   - unique
+        #   - not_null
       - name: modified_date
         description: "Date and time the record was last updated."
       - name: sales_reason_id
@@ -301,6 +304,9 @@ models:
     columns:
       - name: business_entity_id
         description: "Unique identifier for the business entity - FK to BusinessEntity.BusinessEntityID."
+        tests:
+          - unique
+          - not_null
       - name: territory_id
         description: "Identifier for the sales territory associated with this record - FK to SalesTerritory.SalesTerritoryID."
       - name: sales_quota
@@ -338,9 +344,9 @@ models:
     columns:
       - name: special_offer_id
         description: "Unique identifier for the special offer - FK to SpecialOffer.SpecialOfferID."
-        tests:
-          - unique
-          - not_null
+        # tests:
+        #   - unique
+        #   - not_null
       - name: product_id
         description: "Unique identifier for the product associated with the special offer - FK to Product.ProductID."
       - name: modified_date

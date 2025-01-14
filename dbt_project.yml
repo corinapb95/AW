@@ -41,4 +41,8 @@ models:
     staging:
       +schema: staging
       aw_postgres:
-      +materialized: view
+      +materialized: table
+    marts:
+      +schema: marts
+      +materialized: table
+
