@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('aw_postgres', 'product') }}
+    select * from {{ source('aw_postgres', 'production_product') }}
 
 ),
 
@@ -11,7 +11,7 @@ renamed as (
     select
         class,
         color,
-        daystomanufacture as days_to_manufacture,
+        daystomanufacture as days_to_smanufacture,
         finishedgoodsflag as finished_goods_flag,
         listprice as list_price,
         makeflag as make_flag,

@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: aw_postgres
-    database: aw-from-nekt  
-    schema: raw  
+    database: aw-from-nekt
+    schema: raw
     tables:
       - name: humanresources_department
       - name: humanresources_employee
@@ -22,4 +22,3 @@ sources:
       - name: sales_salesterritory
       - name: sales_store
       - name: person_person
-
