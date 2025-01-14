@@ -8,7 +8,7 @@ person as (
     from {{ ref('stg_aw_postgres__person') }}
 ),
 
-join_customer_and_person as (
+join_customer_data as (
     select    
         {{ dbt_utils.generate_surrogate_key(['customer.customer_id']) }} as product_key, 
         customer.customer_id,
@@ -22,5 +22,4 @@ join_customer_and_person as (
         on customer.person_id = person.person_id
 )
 
-select * from join_customer_and_person
-
+select * from join_customer_data
