@@ -2,20 +2,24 @@ version: 2
 
 sources:
   - name: aw_postgres
-    database: aw-bigquery  
-    schema: aw_postgres  
+    database: aw-from-nekt  
+    schema: raw  
     tables:
-      - name: address
-      - name: countryregion
-      - name: customer
-      - name: employee
-      - name: person
-      - name: product
-      - name: productproductphoto
-      - name: salesorderdetail
-      - name: salesorderheader
-      - name: salesorderheadersalesreason
-      - name: salesperson
-      - name: salesreason
-      - name: specialofferproduct
-      - name: stateprovince
+      - name: humanresources_department
+      - name: humanresources_employee
+      - name: person_address
+      - name: person_countryregion
+      - name: person_stateprovince
+      - name: production_product
+      - name: production_productcategory
+      - name: production_productsubcategory
+      - name: sales_creditcard
+      - name: sales_customer
+      - name: sales_salesorderdetail
+      - name: sales_salesorderheader
+      - name: sales_salesperson
+      - name: sales_salesreason
+      - name: sales_salesterritory
+      - name: sales_store
+      - name: person_person
+
