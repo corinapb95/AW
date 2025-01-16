@@ -7,35 +7,35 @@ employee AS (
 
 person AS (
     SELECT
-        person_id,
+        business_entity_id AS person_id, -- Certifique-se de que "person_id" corresponde à coluna correta
         first_name,
-        last_name,
-        email_address
+        last_name
     FROM {{ ref('stg_aw_postgres__person') }}
 ),
 
 department AS (
     SELECT
         department_id,
-        name AS department_name
+        department_name AS department_name
     FROM {{ ref('stg_aw_postgres__department') }}
 ),
 
 join_employee_data AS (
     SELECT
-        {{ dbt_utils.generate_surrogate_key(['e.business_entity_id']) }} AS employee_key,
+        TO_HEX(MD5(CAST(COALESCE(CAST(e.business_entity_id AS STRING), '_dbt_utils_surrogate_key_null_') AS STRING))) AS employee_key,
         e.business_entity_id AS employee_id,
         e.job_title,
+        p.first_name,
+        p.last_name,
         CONCAT(p.first_name, ' ', p.last_name) AS full_name,
-        p.email_address,
         e.birth_date,
         e.hire_date,
         d.department_name
     FROM employee e
     LEFT JOIN person p
-        ON e.business_entity_id = p.person_id
+        ON e.business_entity_id = p.person_id -- Garantir que person_id está correto
     LEFT JOIN department d
-        ON dh.department_id = d.department_id
+        ON e.department_id = d.department_id -- Certificar-se de que "department_id" existe em employee
 )
 
 SELECT 
@@ -44,9 +44,8 @@ SELECT
     full_name,
     first_name,
     last_name,
-    email_address,
     job_title,
     birth_date,
     hire_date,
     department_name
-FROM join_employee_data;
+FROM join_employee_data

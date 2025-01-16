@@ -10,7 +10,7 @@ renamed as (
 
     select
         class,
-        color,
+        COALESCE(color, 'Unknown') as color,
         daystomanufacture as days_to_smanufacture,
         finishedgoodsflag as finished_goods_flag,
         listprice as list_price,

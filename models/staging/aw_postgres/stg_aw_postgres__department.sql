@@ -12,7 +12,7 @@ renamed as (
         departmentid as department_id,
         name as department_name,
         groupname as group_name,
-        modifieddate as modified_date,
+        modifieddate as modified_date
     from source
 
 )

@@ -11,7 +11,7 @@ renamed as (
     select
         businessentityid as business_entity_id,
         firstname as first_name,
-        middlename as middle_name,
+        COALESCE(middlename, '') as middle_name ,
         lastname as last_name,
         title,
         suffix,

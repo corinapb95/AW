@@ -10,19 +10,17 @@ person as (
 
 join_customer_data as (
     select    
-        {{ dbt_utils.generate_surrogate_key(['customer.customer_id']) }} AS customer_key,
+    -- ?? faz sentido a customer_key ??
+        TO_HEX(MD5(CAST(COALESCE(CAST(customer.customer_id AS STRING), '_dbt_utils_surrogate_key_null_') AS STRING))) AS customer_key,
         customer.customer_id,
-        CONCAT(person.first_name, ' ', COALESCE(person.middle_name, ''), ' ', person.last_name) AS full_name,
+        CONCAT(person.first_name, ' ', person.middle_name, ' ', person.last_name) AS full_name,
         person.email_promotion,
         customer.modified_date,
         customer.territory_id,
         customer.store_id,
-        customer.person_id,
-        COALESCE(customer.territory_id, -1) AS territory_id, -- faz sentido?
-        COALESCE(customer.store_id, -1) AS store_id
     from customer 
     left join person 
-        on customer.person_id = person.person_id
+        on customer.person_id = person.business_entity_id
 )
 
 select * from join_customer_data

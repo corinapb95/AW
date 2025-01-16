@@ -12,8 +12,8 @@ renamed as (
         personid as person_id,
         modifieddate as modified_date,
         rowguid,
-        territoryid as territory_id,
-        storeid as store_id,
+        COALESCE(territoryid, -1) as territory_id,
+        COALESCE(storeid, -1) as store_id,
         customerid as customer_id,
     from source
 

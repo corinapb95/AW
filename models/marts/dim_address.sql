@@ -17,8 +17,8 @@ join_address_stateprovince_and_countryregion as (
     select 
         {{ dbt_utils.generate_surrogate_key(['addr.address_id']) }} AS address_key,
         addr.address_id,
-        addr.address_line1,
-        COALESCE(addr.address_line2, '') AS address_line2, -- coalesce faço aqui mesmo ou na staging?
+        addr.address_line_1,
+        addr.address_line_2,
         addr.city,
         sp.state_province_id,
         sp.state_province_code,
