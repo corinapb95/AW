@@ -7,6 +7,7 @@ sources:
     tables:
       - name: humanresources_department
       - name: humanresources_employee
+      - name: humanresources_employeedepartmenthistory
       - name: person_address
       - name: person_countryregion
       - name: person_stateprovince

@@ -1,51 +1,44 @@
-WITH 
-
-employee AS (
-    SELECT *
-    FROM {{ ref('stg_aw_postgres__employee') }}
+with employee as (
+    select *
+    from {{ ref('stg_aw_postgres__employee') }}
 ),
 
-person AS (
-    SELECT
-        business_entity_id AS person_id, -- Certifique-se de que "person_id" corresponde à coluna correta
-        first_name,
-        last_name
-    FROM {{ ref('stg_aw_postgres__person') }}
+person as (
+    select *
+    from {{ ref('stg_aw_postgres__person') }}
 ),
 
-department AS (
-    SELECT
-        department_id,
-        department_name AS department_name
-    FROM {{ ref('stg_aw_postgres__department') }}
+department_history as (
+    select *
+    from {{ ref('stg_aw_postgres__employeedepartmenthistory') }}
 ),
 
-join_employee_data AS (
-    SELECT
-        TO_HEX(MD5(CAST(COALESCE(CAST(e.business_entity_id AS STRING), '_dbt_utils_surrogate_key_null_') AS STRING))) AS employee_key,
-        e.business_entity_id AS employee_id,
-        e.job_title,
-        p.first_name,
-        p.last_name,
-        CONCAT(p.first_name, ' ', p.last_name) AS full_name,
-        e.birth_date,
-        e.hire_date,
-        d.department_name
-    FROM employee e
-    LEFT JOIN person p
-        ON e.business_entity_id = p.person_id -- Garantir que person_id está correto
-    LEFT JOIN department d
-        ON e.department_id = d.department_id -- Certificar-se de que "department_id" existe em employee
+department as (
+    select *
+    from {{ ref('stg_aw_postgres__department') }}
+),
+
+joined_data as (
+    select 
+        TO_HEX(MD5(CAST(COALESCE(CAST(employee.business_entity_id as STRING), '_dbt_utils_surrogate_key_null_') as STRING))) AS employee_key,
+        employee.business_entity_id AS employee_id,
+        CONCAT(person.first_name, ' ', person.last_name) AS full_name,
+        person.first_name,
+        person.last_name,
+        employee.job_title,
+        employee.birth_date,
+        employee.hire_date,
+        dep_his.start_date,
+        dep_his.end_date,
+        COALESCE(dept.department_name, 'Unknown') AS department_name,
+        dep_his.shift_id
+    from employee 
+    LEFT JOIN person
+        ON employee.business_entity_id = person.business_entity_id
+    LEFT JOIN department_history dep_his
+        ON employee.business_entity_id = dep_his.business_entity_id
+    LEFT JOIN department dept
+        ON dep_his.department_id = dept.department_id
 )
 
-SELECT 
-    employee_key,
-    employee_id,
-    full_name,
-    first_name,
-    last_name,
-    job_title,
-    birth_date,
-    hire_date,
-    department_name
-FROM join_employee_data
+select * from joined_data

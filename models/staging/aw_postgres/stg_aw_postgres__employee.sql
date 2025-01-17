@@ -9,7 +9,7 @@ source as (
 renamed as (
 
     select
-        businessentityid as business_entity_id,
+        businessentityid AS business_entity_id,
         rowguid,
         loginid as login_id,
         nationalidnumber as national_id_number,

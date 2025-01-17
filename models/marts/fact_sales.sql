@@ -1,18 +1,18 @@
-WITH sales_order_header AS (
-    SELECT 
+with sales_order_header as (
+    select 
         sales_order_id,
         customer_id,
         territory_id,
         ship_method_id,
-        CAST(order_date AS DATE) AS order_date,
+        CAST(order_date as DATE) as order_date,
         total_due,
         freight,
         tax_amt
-    FROM {{ ref('stg_aw_postgres__salesorderheader') }}
+    from {{ ref('stg_aw_postgres__salesorderheader') }}
 ),
 
-sales_order_detail AS (
-    SELECT 
+sales_order_detail as (
+    select 
         sales_order_detail_id,
         sales_order_id,
         product_id,
@@ -20,14 +20,14 @@ sales_order_detail AS (
         order_qty,
         unit_price,
         unit_price_discount,
-        (order_qty * unit_price) AS gross_sales, 
-        (order_qty * unit_price * unit_price_discount) AS total_discount, 
-        ((order_qty * unit_price) - (order_qty * unit_price * unit_price_discount)) AS net_sales
-    FROM {{ ref('stg_aw_postgres__salesorderdetail') }}
+        (order_qty * unit_price) as gross_sales, 
+        (order_qty * unit_price * unit_price_discount) as total_discount, 
+        ((order_qty * unit_price) - (order_qty * unit_price * unit_price_discount)) as net_sales
+    from {{ ref('stg_aw_postgres__salesorderdetail') }}
 ),
 
-joined_data AS (
-    SELECT
+joined_data as (
+    select
         d.sales_order_detail_id,
         d.sales_order_id,
         h.customer_id,
@@ -44,21 +44,20 @@ joined_data AS (
         d.net_sales,
         h.freight,
         h.tax_amt
-    FROM sales_order_detail d
+    from sales_order_detail d
     LEFT JOIN sales_order_header h
         ON d.sales_order_id = h.sales_order_id
 ),
 
-enriched_data AS (
-    -- Adiciona chaves para dimensões
-    SELECT
+enriched_data as (
+    select
         j.sales_order_detail_id,
         j.sales_order_id,
-        {{ ref('dim_customer') }}.customer_key AS customer_key,
-        {{ ref('dim_product') }}.product_key AS product_key,
-        {{ ref('dim_date') }}.date_key AS order_date_key,
-        {{ ref('dim_address') }}.address_key AS ship_to_address_key,
-        {{ ref('dim_employee') }}.employee_key AS sales_person_key,
+        c.customer_key as customer_key,
+        p.product_key as product_key,
+        d.date_key as order_date_key,
+        a.address_key as ship_to_address_key,
+        -- e.employee_key as sales_person_key, -- Removido ou descomentado se necessário
         j.territory_id,
         j.ship_method_id,
         j.product_id,
@@ -70,16 +69,17 @@ enriched_data AS (
         j.total_discount,
         j.net_sales,
         j.freight,
-        j.tax_amt,
-        CURRENT_TIMESTAMP() AS load_date
-    FROM joined_data j
+        j.tax_amt
+    from joined_data j
     LEFT JOIN {{ ref('dim_customer') }} c
         ON j.customer_id = c.customer_id
     LEFT JOIN {{ ref('dim_product') }} p
         ON j.product_id = p.product_id
     LEFT JOIN {{ ref('dim_date') }} d
-        ON CAST(j.order_date AS DATE) = d.date
+        ON CAST(j.order_date AS DATE) = CAST(d.date AS DATE)
+    LEFT JOIN {{ ref('dim_address') }} a
+        ON CAST(j.territory_id AS STRING) = a.address_key
 )
 
-SELECT *
-FROM enriched_data;
+select *
+from enriched_data
