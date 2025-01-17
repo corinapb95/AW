@@ -19,7 +19,7 @@ renamed as (
         freight,
         modifieddate as modified_date,
         onlineorderflag as online_order_flag,
-        orderdate as order_date,
+        CAST(orderdate as DATE) as order_date,
         purchaseordernumber as purchase_order_number,
         revisionnumber as revision_number,
         rowguid,
