@@ -1,4 +1,4 @@
-with sales_order_header as (
+ with sales_order_header as (
     select 
         sales_order_id
         , customer_id
@@ -9,9 +9,8 @@ with sales_order_header as (
         , freight
         , tax_amt
     from {{ ref('stg_aw_postgres__salesorderheader') }}
-),
-
-sales_order_detail as (
+)
+    , sales_order_detail as (
     select 
         sales_order_detail_id
         , sales_order_id
@@ -21,17 +20,18 @@ sales_order_detail as (
         , unit_price
         , unit_price_discount
     from {{ ref('stg_aw_postgres__salesorderdetail') }}
-),
-
-joined_data as (
+)
+    , joined_data as (
     select
         d.sales_order_detail_id
-        , d.sales_order_id
+        , h.sales_order_id
         , h.customer_id -- fk para a customer
-        , CAST(h.territory_id AS STRING) as territory_id -- fk para address
+        , CAST(h.territory_id AS STRING) as territory_id 
         , h.ship_method_id
-        , order_date -- fk para date
+        , h.order_date 
+        , to_varchar(date(h.order_date), 'YYYYMMDD') AS date_sk -- fk para date
         , d.product_id -- fk para product
+        , h.bill_to_address_id -- fk para address
         , d.special_offer_id
         , d.order_qty
         , d.unit_price

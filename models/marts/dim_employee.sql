@@ -1,24 +1,20 @@
 with employee as (
     select *
     from {{ ref('stg_aw_postgres__employee') }}
-),
-
-person as (
+)
+    , person as (
     select *
     from {{ ref('stg_aw_postgres__person') }}
-),
-
-department_history as (
+)
+    , department_history as (
     select *
     from {{ ref('stg_aw_postgres__employeedepartmenthistory') }}
-),
-
-department as (
+)
+    , department as (
     select *
     from {{ ref('stg_aw_postgres__department') }}
-),
-
-joined_data as (
+)
+    , joined_data as (
     select 
         employee.business_entity_id AS employee_id
         , CONCAT(person.first_name, ' ', person.last_name) AS full_name

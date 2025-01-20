@@ -1,44 +1,39 @@
-WITH 
-stg_product AS (
-    SELECT *
-    FROM {{ ref('stg_aw_postgres__product') }}
-),
-
-stg_product_category AS (
-    SELECT *
-    FROM {{ ref('stg_aw_postgres__productcategory') }}
-),
-
-stg_product_subcategory AS (
-    SELECT *
-    FROM {{ ref('stg_aw_postgres__productsubcategory') }}
-),
-
-join_product_data AS (
-    SELECT
-        {{ dbt_utils.generate_surrogate_key(['pro.product_id']) }} AS product_key,
-        pro.product_id,
-        sub.product_subcategory_id,
-        pro.name AS product_name,
-        pro.product_number,
-        pro.color,
-        pro.class,
-        sub.subcategory_name AS product_subcategory_name,
-        cat.category_name AS product_category_name
-    FROM stg_product AS pro
-    LEFT JOIN stg_product_subcategory AS sub
-        ON pro.product_subcategory_id = sub.product_subcategory_id
-    LEFT JOIN stg_product_category AS cat
-        ON sub.product_category_id = cat.product_category_id
+with stg_product as (
+    select *
+    from {{ ref('stg_aw_postgres__product') }}
+)
+, stg_product_category as (
+    select *
+    from {{ ref('stg_aw_postgres__productcategory') }}
+)
+, stg_product_subcategory as (
+    select *
+    from {{ ref('stg_aw_postgres__productsubcategory') }}
+)
+, join_product_data as (
+    select
+        pro.product_id
+        , pro.product_name
+        , sub.product_subcategory_id
+        , pro.product_number
+        , pro.make_flag
+        , pro.finished_goods_flag
+        , pro.safety_stock_level
+        , pro.reorder_point
+        , pro.standard_cost
+        , pro.list_price
+        , pro.product_model_id
+        , pro.days_to_smanufacture
+        , pro.sell_start_date
+        , pro.color
+        , pro.class
+        , sub.subcategory_name as product_subcategory_name
+        , cat.category_name as product_category_name
+    from stg_product as pro
+    left join stg_product_subcategory as sub
+        on pro.product_subcategory_id = sub.product_subcategory_id
+    left join stg_product_category as cat
+        on sub.product_category_id = cat.product_category_id
 )
 
-SELECT 
-    product_key,
-    product_id,
-    product_name,
-    product_number,
-    color,
-    class,
-    product_subcategory_name,
-    product_category_name
-FROM join_product_data
+select * from join_product_data
