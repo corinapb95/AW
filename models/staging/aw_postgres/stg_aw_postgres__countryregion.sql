@@ -10,7 +10,6 @@ renamed as (
 
     select
         countryregioncode as country_region_code,
-        modifieddate as modified_date,
         name
     from source
 

@@ -17,9 +17,7 @@ renamed as (
         suffix,
         emailpromotion as email_promotion,
         persontype as person_type,
-        namestyle as name_style,
-        modifieddate as modified_date,
-        rowguid
+        namestyle as name_style
     from source
 
 )

@@ -10,8 +10,6 @@ renamed as (
 
     select
         salesquota as sales_quota,
-        modifieddate as modified_date,
-        rowguid,
         saleslastyear as sales_last_year,
         commissionpct as comission_pct,
         territoryid as territory_id,

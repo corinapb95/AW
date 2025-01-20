@@ -16,9 +16,7 @@ renamed as (
         salesytd as sales_ytd,
         saleslastyear as sales_last_year,
         costytd as cost_ytd,
-        costlastyear as cost_last_year,
-        rowguid,
-        modifieddate as modified_date
+        costlastyear as cost_last_year
     from source
 
 )

@@ -20,18 +20,17 @@ department as (
 
 joined_data as (
     select 
-        TO_HEX(MD5(CAST(COALESCE(CAST(employee.business_entity_id as STRING), '_dbt_utils_surrogate_key_null_') as STRING))) AS employee_key,
-        employee.business_entity_id AS employee_id,
-        CONCAT(person.first_name, ' ', person.last_name) AS full_name,
-        person.first_name,
-        person.last_name,
-        employee.job_title,
-        employee.birth_date,
-        employee.hire_date,
-        dep_his.start_date,
-        dep_his.end_date,
-        COALESCE(dept.department_name, 'Unknown') AS department_name,
-        dep_his.shift_id
+        employee.business_entity_id AS employee_id
+        , CONCAT(person.first_name, ' ', person.last_name) AS full_name
+        , person.first_name
+        , person.last_name
+        , employee.job_title
+        , employee.birth_date
+        , employee.hire_date
+        , dep_his.start_date
+        , dep_his.end_date
+        , COALESCE(dept.department_name, 'Unknown') AS department_name
+        , dep_his.shift_id
     from employee 
     LEFT JOIN person
         ON employee.business_entity_id = person.business_entity_id

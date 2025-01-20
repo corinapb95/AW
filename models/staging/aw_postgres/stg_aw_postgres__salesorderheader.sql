@@ -17,7 +17,6 @@ renamed as (
         customerid as customer_id,
         duedate as due_date,
         freight,
-        modifieddate as modified_date,
         onlineorderflag as online_order_flag,
         CAST(orderdate as DATE) as order_date,
         purchaseordernumber as purchase_order_number,

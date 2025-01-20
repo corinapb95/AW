@@ -4,22 +4,234 @@ sources:
   - name: aw_postgres
     database: aw-from-nekt
     schema: raw
+    description: Raw data from Adventure Works
     tables:
       - name: humanresources_department
+        description: Information about departments
+        columns:
+          - name: departmentid
+            description: Primary key of the department table
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Name of the department
+          - name: groupname
+            description: Name of the group the department belongs to
       - name: humanresources_employee
+        description: Employee details in the organization
+        columns:
+          - name: businessentityid
+            description: Primary key for the employee table
+            tests:
+              - unique
+              - not_null
+          - name: nationalidnumber
+            description: National identification number of the employee
+          - name: jobtitle
+            description: Job title of the employee
+          - name: hiredate
+            description: Date when the employee was hired
+          - name: birthdate
+            description: Birth date of the employee
       - name: humanresources_employeedepartmenthistory
+        description: Historical department assignments for employees
+        columns:
+          - name: businessentityid
+            description: Foreign key linking to the employee table
+          - name: departmentid
+            description: Foreign key linking to the department table
+          - name: shiftid
+            description: Shift identifier for the assignment
+          - name: startdate
+            description: Start date of the assignment
+          - name: enddate
+            description: End date of the assignment (null if current)
       - name: person_address
+        description: Address details
+        columns:
+          - name: addressid
+            description: Primary key of the address table
+            tests:
+              - unique
+              - not_null
+          - name: addressline1
+            description: First line of the address
+          - name: addressline2
+            description: Second line of the address
+          - name: city
+            description: City where the address is located
+          - name: stateprovinceid
+            description: Foreign key linking to the state or province table
+          - name: postalcode
+            description: Postal code for the address
       - name: person_countryregion
+        description: Country or region details
+        columns:
+          - name: countryregioncode
+            description: Unique identifier for the country or region
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Name of the country or region
       - name: person_stateprovince
+        description: State or province details within a country or region
+        columns:
+          - name: stateprovinceid
+            description: Primary key of the state or province table
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Name of the state or province
+          - name: countryregioncode
+            description: Foreign key linking to the countryregion table
       - name: production_product
+        description: Information about products offered by the organization
+        columns:
+          - name: productid
+            description: Primary key of the product table
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Name of the product
+          - name: productnumber
+            description: Unique identifier for the product
+          - name: safetystocklevel
+            description: Minimum safety stock level for the product
       - name: production_productcategory
+        description: Product categories
+        columns:
+          - name: productcategoryid
+            description: Primary key of the product category table
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Name of the product category
       - name: production_productsubcategory
+        description: Product subcategories
+        columns:
+          - name: productsubcategoryid
+            description: Primary key of the product subcategory table
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Name of the product subcategory
+          - name: productcategoryid
+            description: Foreign key linking to the productcategory table
       - name: sales_creditcard
+        description: Credit card information for customer transactions
+        columns:
+          - name: creditcardid
+            description: Primary key of the credit card table
+            tests:
+              - unique
+              - not_null
+          - name: cardtype
+            description: Type of credit card (e.g., Visa, MasterCard)
+          - name: cardnumber
+            description: Credit card number
+          - name: expmonth
+            description: Expiration month of the credit card
+          - name: expyear
+            description: Expiration year of the credit card
       - name: sales_customer
+        description: Customer data
+        columns:
+          - name: customerid
+            description: Primary key of the customer table
+            tests:
+              - unique
+              - not_null
+          - name: personid
+            description: Foreign key linking to the person table
+          - name: territoryid
+            description: Foreign key linking to the salesterritory table
       - name: sales_salesorderdetail
+        description: Products associated with a sales order
+        columns:
+          - name: salesorderdetailid
+            description: Primary key for each sales detail
+            tests:
+              - unique
+              - not_null
+          - name: salesorderid
+            description: Foreign key linking to the salesorderheader table
+          - name: productid
+            description: Foreign key linking to the product table
+          - name: unitprice
+            description: Unit price of the product in the sales order
       - name: sales_salesorderheader
+        description: Sales order data
+        columns:
+          - name: salesorderid
+            description: Primary key for each sales order
+            tests:
+              - unique
+              - not_null
+          - name: orderdate
+            description: Date when the order was placed
+          - name: totaldue
+            description: Total amount due for the sales order
       - name: sales_salesperson
+        description: Salesperson data
+        columns:
+          - name: businessentityid
+            description: Primary key of the salesperson table
+            tests:
+              - unique
+              - not_null
+          - name: territoryid
+            description: Foreign key linking to the salesterritory table
+          - name: bonus
+            description: Bonus earned by the salesperson
       - name: sales_salesreason
+        description: Reasons for sales transactions
+        columns:
+          - name: salesreasonid
+            description: Primary key for each sales reason
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Name or description of the sales reason
       - name: sales_salesterritory
+        description: Sales territories
+        columns:
+          - name: territoryid
+            description: Primary key of the salesterritory table
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Name of the sales territory
       - name: sales_store
+        description: Store data
+        columns:
+          - name: businessentityid
+            description: Primary key for store tables
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Name of the store
+          - name: salespersonid
+            description: Foreign key linking to the salesperson table
       - name: person_person
+        description: Data about people
+        columns:
+          - name: businessentityid
+            description: Primary key of the person table
+            tests:
+              - unique
+              - not_null
+          - name: firstname
+            description: First name of the person
+          - name: lastname
+            description: Last name of the person
+          - name: emailaddress
+            description: Email address of the person

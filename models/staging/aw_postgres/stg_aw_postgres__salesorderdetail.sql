@@ -10,7 +10,6 @@ renamed as (
 
     select
         carriertrackingnumber as carrier_tracking_number,
-        modifieddate as modified_date,
         orderqty as order_qty,
         productid as product_id,
         rowguid,

@@ -1,34 +1,52 @@
-with enriched_data as (
+with sales_order_header as (
+    select 
+        sales_order_id
+        , customer_id
+        , territory_id
+        , ship_method_id
+        , order_date
+        , total_due
+        , freight
+        , tax_amt
+    from {{ ref('stg_aw_postgres__salesorderheader') }}
+),
+
+sales_order_detail as (
+    select 
+        sales_order_detail_id
+        , sales_order_id
+        , product_id
+        , special_offer_id
+        , order_qty
+        , unit_price
+        , unit_price_discount
+    from {{ ref('stg_aw_postgres__salesorderdetail') }}
+),
+
+joined_data as (
     select
-        j.sales_order_detail_id,
-        j.sales_order_id,
-        c.customer_key as customer_key,
-        p.product_key as product_key,
-        d.date_key as order_date_key,
-        a.address_key as ship_to_address_key,
-        -- e.employee_key as sales_person_key, -- Descomentar se necessário
-        j.territory_id,
-        j.ship_method_id,
-        j.product_id,
-        j.special_offer_id,
-        j.order_qty,
-        j.unit_price,
-        j.unit_price_discount,
-        j.gross_sales,
-        j.total_discount,
-        j.net_sales,
-        j.freight,
-        j.tax_amt
-    from {{ ref('int_sales_order') }} j
-    left join {{ ref('dim_customer') }} c
-        on j.customer_id = c.customer_id
-    left join {{ ref('dim_product') }} p
-        on j.product_id = p.product_id
-    left join {{ ref('dim_date') }} d
-        on j.order_date = d.date
-    left join {{ ref('dim_address') }} a
-        on j.territory_id = a.address_key
+        d.sales_order_detail_id
+        , d.sales_order_id
+        , h.customer_id -- fk para a customer
+        , CAST(h.territory_id AS STRING) as territory_id -- fk para address
+        , h.ship_method_id
+        , order_date -- fk para date
+        , d.product_id -- fk para product
+        , d.special_offer_id
+        , d.order_qty
+        , d.unit_price
+        , d.unit_price_discount
+        , h.freight
+        , h.tax_amt
+        , (d.order_qty * d.unit_price) as gross_sales
+        , (d.order_qty * d.unit_price * d.unit_price_discount) as total_discount
+        , ((d.order_qty * d.unit_price) - (d.order_qty * d.unit_price * d.unit_price_discount)) as net_sales
+    from sales_order_detail d
+    left join sales_order_header h
+        on d.sales_order_id = h.sales_order_id
 )
 
 select *
-from enriched_data
+from joined_data
+
+-- fk para employee

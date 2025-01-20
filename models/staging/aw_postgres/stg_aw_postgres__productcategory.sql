@@ -10,9 +10,7 @@ renamed as (
 
     select
         productcategoryid as product_category_id,
-        name as category_name,
-        rowguid,
-        modifieddate as modified_date,
+        name as category_name
     from source
 
 )

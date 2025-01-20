@@ -13,16 +13,13 @@ with sales_order_header as (
 
 sales_order_detail as (
     select 
-        sales_order_detail_id,
-        sales_order_id,
-        product_id,
-        special_offer_id,
-        order_qty,
-        unit_price,
-        unit_price_discount,
-        (order_qty * unit_price) as gross_sales, 
-        (order_qty * unit_price * unit_price_discount) as total_discount, 
-        ((order_qty * unit_price) - (order_qty * unit_price * unit_price_discount)) as net_sales
+        sales_order_detail_id
+        , sales_order_id
+        , product_id
+        , special_offer_id
+        , order_qty
+        , unit_price
+        , unit_price_discount
     from {{ ref('stg_aw_postgres__salesorderdetail') }}
 )
 
@@ -38,9 +35,6 @@ select
     d.order_qty,
     d.unit_price,
     d.unit_price_discount,
-    d.gross_sales,
-    d.total_discount,
-    d.net_sales,
     h.freight,
     h.tax_amt
 from sales_order_detail d

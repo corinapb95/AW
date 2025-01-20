@@ -12,9 +12,7 @@ renamed as (
         businessentityid as business_entity_id,
         name as store_name,
         salespersonid as sales_person_id,
-        demographics,
-        rowguid,
-        modifieddate as modified_date,
+        demographics
     from source
 
 )
