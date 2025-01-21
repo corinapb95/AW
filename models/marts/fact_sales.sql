@@ -21,32 +21,37 @@
         , unit_price_discount
     from {{ ref('stg_aw_postgres__salesorderdetail') }}
 )
+    , card as (
+        select 
+            credit_card_id
+            , card_type
+        from {{ ref('stg_aw_postgres__sales_creditcard') }}
+)
     , joined_data as (
     select
-        d.sales_order_detail_id
-        , h.sales_order_id
-        , h.customer_id -- fk para a customer
-        , CAST(h.territory_id AS STRING) as territory_id 
-        , h.ship_method_id
-        , h.order_date 
-        , to_varchar(date(h.order_date), 'YYYYMMDD') AS date_sk -- fk para date
-        , d.product_id -- fk para product
-        , h.bill_to_address_id -- fk para address
-        , d.special_offer_id
-        , d.order_qty
-        , d.unit_price
-        , d.unit_price_discount
-        , h.freight
-        , h.tax_amt
-        , (d.order_qty * d.unit_price) as gross_sales
-        , (d.order_qty * d.unit_price * d.unit_price_discount) as total_discount
-        , ((d.order_qty * d.unit_price) - (d.order_qty * d.unit_price * d.unit_price_discount)) as net_sales
-    from sales_order_detail d
-    left join sales_order_header h
-        on d.sales_order_id = h.sales_order_id
+        detail.sales_order_detail_id
+        , header.sales_order_id
+        , header.customer_id -- fk para a customer
+        , CAST(header.territory_id AS STRING) as territory_id 
+        , header.ship_method_id
+        , header.order_date 
+        , to_varchar(date(header.order_date), 'YYYYMMDD') AS date_sk -- fk para date
+        , detail.product_id -- fk para product
+        , header.bill_to_address_id -- fk para address
+        , detail.special_offer_id
+        , detail.order_qty
+        , detail.unit_price
+        , detail.unit_price_discount
+        , header.freight
+        , header.tax_amt
+        , (detail.order_qty * detail.unit_price) as gross_sales
+        , (detail.order_qty * detail.unit_price * detail.unit_price_discount) as total_discount
+        , ((detail.order_qty * detail.unit_price) - (detail.order_qty * detail.unit_price * detail.unit_price_discount)) as net_sales
+    from sales_order_detail detail
+    left join sales_order_header header
+        on detail.sales_order_id = header.sales_order_id
+    left join card on header.creditcard_id = card.creditcard_id
 )
 
 select *
 from joined_data
-
--- fk para employee

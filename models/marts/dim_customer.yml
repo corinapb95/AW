@@ -2,19 +2,19 @@ version: 2
 
 models:
   - name: dim_customer
-    description: "Dimensão de clientes com informações consolidadas para análise."
+    description: "Customer dimension with consolidated information for analysis."
     columns:
       - name: customer_key
-        description: "Surrogate key para identificar o cliente."
+        description: "Surrogate key to uniquely identify the customer."
       - name: customer_id
-        description: "ID original do cliente no sistema transacional."
+        description: "Original customer ID from the transactional system."
       - name: full_name
-        description: "Nome completo do cliente."
+        description: "Customer's full name."
       - name: email_promotion
-        description: "Indica se o cliente participa de promoções via e-mail."
+        description: "Indicates whether the customer participates in email promotions."
       - name: modified_date
-        description: "Última data de modificação do cliente."
+        description: "The last modification date for the customer."
       - name: territory_id
-        description: "Território de vendas associado ao cliente."
+        description: "Sales territory associated with the customer."
       - name: store_id
-        description: "Loja associada ao cliente."
+        description: "Store associated with the customer."
