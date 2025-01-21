@@ -176,7 +176,15 @@ sources:
           - name: orderdate
             description: Date when the order was placed
           - name: totaldue
-            description: Total amount due for the sales order
+            description: Total amount due for the sales order        
+      - name: sales_salesorderheadersalesreason
+        description: Bridge table between sales orders and sales reason
+        columns:
+          - name: "salesorderid || '-' || salesreasonid"
+            description: Primary key for salesheadersalesreason.
+            tests:
+              - unique
+              - not_null
       - name: sales_salesperson
         description: Salesperson data
         columns:

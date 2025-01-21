@@ -4,14 +4,14 @@ source as (
 
     select * from {{ source('aw_postgres', 'production_productsubcategory') }}
 
-),
+)
 
-renamed as (
+, renamed as (
 
     select
-        productsubcategoryid as product_subcategory_id,
-        productcategoryid as product_category_id,
-        name as subcategory_name
+        productsubcategoryid as product_subcategory_id
+        , productcategoryid as product_category_id
+        , name as subcategory_name
     from source
 
 )

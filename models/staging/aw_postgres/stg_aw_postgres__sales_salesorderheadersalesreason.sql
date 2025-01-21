@@ -2,15 +2,14 @@ with
 
 source as (
 
-    select * from {{ source('aw_postgres', 'sales_salesreason') }}
+    select * from {{ source('aw_postgres', 'sales_salesorderheadersalesreason') }}
 
 )
 
 , renamed as (
 
     select
-        reasontype as reason_type
-        , name
+        salesorderid as order_id
         , salesreasonid as sales_reason_id
     from source
 
