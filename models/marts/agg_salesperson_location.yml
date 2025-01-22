@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: agg_salesperson_location
+    description: "Aggregated sales data by region and salesperson, including metrics for total sales, gross sales, discounts, and order count."
+    columns:
+      - name: territory_id
+        description: "Identifier for the sales territory."
+        tests:
+          - not_null
+      - name: region
+        description: "Name of the state or province where the sale occurred."
+        tests:
+          - not_null
+      - name: country
+        description: "Name of the country where the sale occurred."
+        tests:
+          - not_null
+      - name: employee_name
+        description: "Full name of the salesperson involved in the sale."
+        tests:
+          - not_null
+      - name: department_name
+        description: "Department of the salesperson involved in the sale."
+        tests:
+          - not_null
+      - name: total_sales
+        description: "Sum of net sales for the given aggregation."
+        tests:
+          - not_null
+      - name: total_gross_sales
+        description: "Sum of gross sales for the given aggregation."
+        tests:
+          - not_null
+      - name: total_discounts
+        description: "Sum of discounts applied to sales for the given aggregation."
+        tests:
+          - not_null
+      - name: total_orders
+        description: "Count of unique sales orders for the given aggregation."
+        tests:
+          - not_null
+

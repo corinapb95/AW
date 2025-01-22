@@ -10,7 +10,7 @@ source as (
 
     select
         reasontype as reason_type
-        , name
+        , name as reason_name
         , salesreasonid as sales_reason_id
     from source
 
