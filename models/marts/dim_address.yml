@@ -2,21 +2,36 @@ version: 2
 
 models:
   - name: dim_address
-    description: "Tabela dimensional para armazenar informações de endereços."
+    description: "Dimensional table to store address information."
     columns:
       - name: address_key
-        description: "Chave substituta exclusiva para cada endereço."
+        description: "Surrogate key uniquely identifying each address."
       - name: address_id
-        description: "ID do endereço original no sistema transacional."
+        description: "Original address ID from the transactional system."
+        tests:
+          - unique
+          - not_null
       - name: address_line1
-        description: "Primeira linha do endereço."
+        description: "First line of the address."
+        tests:
+          - not_null
       - name: address_line2
-        description: "Segunda linha do endereço (opcional)."
+        description: "Second line of the address (optional)."
+        tests:
+          - not_null
       - name: city
-        description: "Cidade do endereço."
+        description: "City of the address."
+        tests:
+          - not_null
       - name: state_province_name
-        description: "Nome do estado ou província."
+        description: "Name of the state or province."
+        tests:
+          - not_null
       - name: country_region_name
-        description: "Nome do país ou região."
+        description: "Name of the country or region."
+        tests:
+          - not_null
       - name: postal_code
-        description: "Código postal do endereço."
+        description: "Postal code of the address."
+        tests:
+          - not_null

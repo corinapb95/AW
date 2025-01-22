@@ -4,14 +4,13 @@ source as (
 
     select * from {{ source('aw_postgres', 'person_countryregion') }}
 
-),
+)
 
-renamed as (
+, renamed as (
 
     select
-        countryregioncode as country_region_code,
-        modifieddate as modified_date,
-        name
+        countryregioncode as country_region_code
+        , name
     from source
 
 )

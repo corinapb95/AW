@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: "Dimension table containing date-related attributes."
+    columns:
+      - name: date
+        description: "The specific calendar date."
+        tests:
+          - not_null
+          - unique
+      - name: date_key
+        description: "Unique integer key for each date, in YYYYMMDD format."
+        tests:
+          - not_null
+          - unique
+      - name: year
+        description: "The year of the date."
+        tests:
+          - not_null
+      - name: month
+        description: "The month of the date (numeric)."
+        tests:
+          - not_null
+      - name: month_name
+        description: "The full name of the month."
+      - name: day
+        description: "The day of the month."
+        tests:
+          - not_null
+      - name: day_of_week
+        description: "The day of the week (numeric, where 1 = Sunday and 7 = Saturday)."
+      - name: day_name
+        description: "The full name of the day of the week."
+      - name: quarter
+        description: "The quarter of the year (1 to 4)."
+      - name: week_of_year
+        description: "The week number within the year."
+      - name: is_weekend
+        description: "Indicates if the date falls on a weekend (true/false)."
