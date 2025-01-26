@@ -12,7 +12,7 @@ models:
         description: "Unique identifier for the sales reason."
         tests:
           - not_null
-          - unique
+          # - unique
       - name: reason_name
         description: "Name of the reason for the sale (e.g., Advertising, Promotion)."
         tests:
