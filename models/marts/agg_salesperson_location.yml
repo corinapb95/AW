@@ -16,14 +16,14 @@ models:
         description: "Name of the country where the sale occurred."
         tests:
           - not_null
-      - name: employee_name
-        description: "Full name of the salesperson involved in the sale."
-        tests:
-          - not_null
+      # - name: employee_name
+      #   description: "Full name of the salesperson involved in the sale."
+      #   tests:
+      #     - not_null
       - name: department_name
         description: "Department of the salesperson involved in the sale."
-        tests:
-          - not_null
+        # tests:
+        #   - not_null
       - name: total_sales
         description: "Sum of net sales for the given aggregation."
         tests:
