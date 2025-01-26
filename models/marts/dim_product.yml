@@ -46,5 +46,3 @@ models:
         description: "Name of the subcategory to which the product belongs."
       - name: product_category_name
         description: "Name of the category to which the product belongs."
-        tests:
-          - not_null

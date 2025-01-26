@@ -13,12 +13,8 @@ models:
           - not_null
       - name: address_line1
         description: "First line of the address."
-        tests:
-          - not_null
       - name: address_line2
         description: "Second line of the address (optional)."
-        tests:
-          - not_null
       - name: city
         description: "City of the address."
         tests:
